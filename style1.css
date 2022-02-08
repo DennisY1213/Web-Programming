@@ -1,0 +1,165 @@
+html body {
+	margin:-18px;
+	border:0;
+	padding:0;
+	height: 100%;
+	overflow-x:hidden;
+}
+
+a{
+	text-decoration: none;
+}
+.clr{
+	clear: both;
+}
+.topnav ul{	
+	overflow: hidden;
+	border: 2px;
+	list-style-type: none;
+	background-color: #005AB5;
+	
+
+}
+
+.topnav ul li{
+	display: inline-block;
+	float: left;
+	width: 25%;
+}
+
+.topnav ul li a{
+	display: block;
+	padding: 4px;
+	text-align: center;
+	color: white;
+	font-size: 23px
+}
+
+.topnav ul li a:hover{
+	background-color: #66B2FF;
+}
+
+.mainpage{
+	background-image: url('bg.jpeg');
+	background-size: 100%; 
+	height: 600px;
+}
+
+.mainpage img{
+	position: absolute;
+	top: 200px;
+	left:200px;
+}
+
+.mainpage p{
+	font-size:30px;
+	color: white;
+	position: absolute;
+	top:330px;
+	left:200px;
+}
+
+.profile{
+    position: relative;
+	width: 80%;
+	margin-top: 60px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	font-size: 20px;
+}
+
+.profile h2{
+	font-family: Helvetica, serif;
+	font-size: 40px;
+	text-align: center;
+	color: #0066CC;
+
+}
+
+.profile p{
+	text-align: justify;
+	font-family:Helvetica, serif;
+	line-height: 2em;
+	word-spacing: 0.1em;
+	padding: 20px 20px;
+}
+
+.profile a{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-left: 60px;
+	border-radius: 30px;
+	color: white;
+	display: inline-block;
+	background-color: rgba(0,128,255, 80%);
+	padding: 5px 5px;
+}
+
+.profile a:hover{
+	background-color: #66B2FF;
+}
+
+
+.logo img{
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.products h2{
+	font-size: 30px;
+	color:  #606060;
+    background-color: #E0E0E0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: -3px;
+}
+
+.products p{
+	background-color: #E0E0E0;
+	margin-top: -10px;
+	margin-bottom: -10px;
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
+
+.products a{
+	display: inline-block;
+	color: #FF3333;
+	font-size: 15px;
+}
+
+.products a:hover{
+	background-color: #E0E0E0;
+}
+
+.block{
+	height: 400px;
+	padding-top: 10px;
+	background-color: #E0E0E0;
+	float: left;
+	width: 33.3%;
+	box-sizing: border-box;
+}
+
+.block p{
+	font-size: 18px;
+	width: 400px;
+	height: 50px;
+	background-color: white;
+	padding-top: 10px;
+}
+
+footer{
+	height: 40px;
+	padding-top: 20px;
+	padding-left: 10%;
+	color:white;
+	background-color: #005AB5;
+}
+
+
+
