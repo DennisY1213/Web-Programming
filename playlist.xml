@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="xmlstyle.css"?>
+
+<songslist>
+	<!-->R&B</-->
+	<h1>Zichen's Playlist</h1>
+	<song>
+		<title>Come Around Me</title>
+		<artist>Justin Bieber</artist>
+		<genre>RB</genre>
+		<year>2020</year>
+	</song>
+	<song>
+		<title>Running Over</title>
+		<artist>Justin Bieber</artist>
+		<genre>RB</genre>
+		<year>2020</year>		
+	</song>
+	<song>
+		<title>ETA</title>
+		<artist>Justin Bieber</artist>
+		<genre>RB</genre>
+		<year>2020</year>		
+	</song>
+	<song>
+		<title>Yummy</title>
+		<artist>Justin Bieber</artist>
+		<genre>RB</genre>
+		<year>2020</year>		
+	</song>
+	<!-->Pop</-->
+	<song>
+		<title>Lost in Japan</title>
+		<artist>Shawn Mendas</artist>
+		<genre>Pop</genre>
+		<year>2018</year>		
+	</song>
+	<song>
+		<title>Cheating on You</title>
+		<artist>Charlie Puth</artist>
+		<genre>Pop</genre>
+		<year>2019</year>		
+	</song>
+	<song>
+		<title>Paris In The Rain</title>
+		<artist>Lauv</artist>
+		<genre>Pop</genre>
+		<year>2017</year>		
+	</song>
+	<!-->Rap</-->
+	<song>
+		<title>Godzilla (Explicit)</title>
+		<artist>Eminem/Juice WRLD</artist>
+		<genre>Rap</genre>
+		<year>2020</year>		
+	</song>
+	<song>
+		<title>Circles</title>
+		<artist>Post Malone</artist>
+		<genre>Rap</genre>
+		<year>2019</year>		
+	</song>
+	<song>
+		<title>Stranger Things</title>
+		<artist>Joyner Lucas/Chris Brown</artist>
+		<genre>Rap</genre>
+		<year>2018</year>		
+	</song>
+	
+
+</songslist>

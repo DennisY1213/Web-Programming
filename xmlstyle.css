@@ -1,0 +1,43 @@
+h1{
+	display: block;
+	text-align: center;
+	font-size: 40px;
+	font-family: Verdana;
+}
+
+songslist{
+	display: block;
+	text-align: center;
+}
+
+song{
+	display: flex;
+	margin-top: 30px;
+	margin-bottom: 20px; 
+	justify-content: space-between;
+}
+
+title{
+	display: block;
+	float: left;
+	width: 20%;
+	font-size: 20px;
+}
+
+artist{
+	display: block;
+	float: left;
+	width: 20%;
+}
+
+genere{
+	display: block;
+	float: left;
+	width: 20%;
+}
+
+year{
+	display: block;
+	float: left;
+	width: 20%
+}
