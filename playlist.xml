@@ -4,6 +4,12 @@
 <songslist>
 	<!-->R&B</-->
 	<h1>Zichen's Playlist</h1>
+	<song id = "template">
+		<title>Title</title>
+		<artist>Artist</artist>
+		<genre>Genre</genre>
+		<year>Year Published</year>
+	</song>
 	<song>
 		<title>Come Around Me</title>
 		<artist>Justin Bieber</artist>
