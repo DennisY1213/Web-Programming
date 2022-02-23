@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lottery Sim</title>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+		h1{
+			text-align: center;
+			font-size: 40px;
+		}
+
+
+		.payout{
+			font-size: 80px;
+			color: blue;
+		}
+
+		.congrats{
+			font-size: 40px;
+
+		}
+
+		.lose{
+			font-size: 60px;
+			color: grey;
+		}
+	</style>
+</head>
+<body>
+	<div><h1>Welcome to "Lucky For Life"</h1></div>
+	<script type="text/javascript">
+		
+
+		function linsearch(list, number){
+			for(let i = 0; i < 5; i++){
+				if (list[i] == number){
+					return 1;
+				}
+			}
+			return 0;
+		}
+
+        match = 0
+        Lucky = false
+		pick = []
+		winNums = [12, 15, 24, 35, 48]
+		winLucky = 3
+		for (let i = 0; i < 5; i++){
+			pick.push(Math.floor(Math.random()*48 + 1))
+		}
+		document.write("Your Pick(unsorted) is: <strong>" + pick + "</strong><br>")
+		pick = pick.sort(function(a, b){return a - b})
+		document.write("Your Pick(sorted) is: <strong>" + pick + "</strong><br>")
+		pick.push(Math.floor(Math.random()*18 + 1))
+		document.write("Your Lucky Ball is: <strong>" + pick[5] + "</strong><br><br>")
+		document.write("The Winning Numbers are: <strong>" + winNums + "</strong><br>")
+		document.write("The Winning Lucky Ball is: <strong>" + winLucky + "</strong><br><br><br>")
+
+
+		for(let i = 0; i < 5; i++){
+
+			match = match + linsearch(pick, winNums[i])
+		}
+
+
+		document.write("There are <strong>" + match + "</strong> numbers in your pick match the Winning Numbers" + "<br>")
+		
+		if(pick[5] == winLucky){
+			Lucky = true
+			document.write("Your Luck Ball is Matched!!!<br>")
+		}
+		else{
+			document.write("Your Luck Ball is not Matched<br>")
+		}
+        
+        /*If you win nothing*/
+		if((match == 0 && Lucky == false)|| (match == 1 && Lucky == false)){
+        	document.write("<div class=\"lose\">Wish U Good Luck Next Time.</div>")
+        }
+
+        else{
+        
+        /*If you win something*/
+        document.write("<div class=\"congrats\"> Congratulation! You win: </div><br>")
+            if((match == 5) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$7,000 a WEEK for LIFE</div>")
+			}
+
+			if((match == 5) && (Lucky == false)){
+			    document.write("<div class= \"payout\">$25,000 a YEAR for LIFE</div>")
+			}
+			
+			if((match == 4) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$5,000</div>")
+			}
+			    
+			else if((match == 4) && (Lucky == false)){
+			    document.write("<div class= \"payout\">$200</div>")
+			}
+			    
+			else if ((match == 3) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$150</div>")
+			}
+
+			else if ((match == 3) && (Lucky == false)){
+			    document.write("<div class= \"payout\">$20</div>")
+			}
+
+			else if ((match == 2) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$25</div>")
+			}
+			    
+			else if ((match == 2) && (Lucky == false)){
+			    document.write("<div class= \"payout\">$3</div>")
+			}
+
+			else if ((match == 1) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$6</div>")
+			}
+	
+			else if ((match == 0) && (Lucky == true)){
+			    document.write("<div class= \"payout\">$4</div>")
+			}
+			    
+
+		}
+	    
+		
+
+		
+	</script>
+
+</body>
+</html>
