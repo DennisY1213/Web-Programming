@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amicable Numbers</title>
+    <style type="text/css">
+        body{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: center;
+        }
+        #result1{
+            padding-top:40px;
+            text-align: center;
+            font-size: 30px;
+            width: 700px;
+            height: 200px;
+        }
+
+        #result2{
+            margin-top:-20px;
+            text-align: center;
+            font-size: 30px;
+            width: 700px;
+            height: 200px;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: center;
+        }
+
+        input[type="text"]{
+            width:200px;
+            height:40px;
+            margin-bottom: 30px;
+        }
+
+        input[type="button"]{
+            height:30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function isAFactor(x,y){
+            return (y % x == 0)
+        }
+        
+        function getFactors(x){
+            factors = []
+            for(let i = 1; i <= Math.sqrt(x); i++)
+            {
+                if (isAFactor(i,x))
+                {                
+                    // If divisors are equal, print only one
+                    if (x/i == i){
+                        factors.push(i)
+                    }
+                    // Otherwise print both
+                    else{
+                        factors.push(i)
+                        if(x/i != x){
+                            factors.push(x/i)
+                        }
+                    }
+                }
+            }
+            factors = factors.sort(function(a, b){return a - b})
+            return factors
+        }
+
+        function isAmicable(num1,num2){
+            sum1 = 0
+            sum2 = 0
+
+            x = getFactors(num1)
+            y = getFactors(num2)
+            
+            for(let i = 0; i < x.length; i++){
+                sum1 += x[i]
+            }
+
+            for(let k = 0; k < y.length; k++){
+                sum2 += y[k]
+            }
+            
+            if((sum1 == num2) && (sum2 == num1)){
+                return ("The numbers: " + num1 + " and " + num2 + " are amicable")
+            } else {
+                return ("The numbers: " + num1 + " and " + num2 + " are not amicable")
+            }
+        }
+
+        function print1(){
+            
+            num1 = document.getElementById("form-control1").value;
+            num2 = document.getElementById("form-control2").value;
+            document.getElementById("result2").innerHTML = "The factors for " + num1 + " is: "+getFactors(num1).join(" ") + "<br>"
+            document.getElementById("result2").innerHTML += "The factors for " + num2 + " is: "+getFactors(num2).join(" ") + "<br>"
+            document.getElementById("result1").innerHTML = isAmicable(num1,num2)
+            
+
+        }
+    </script>
+    <h1>Amicable Numbers Checker</h1> 
+    <form action="" method="get">
+        <div>
+            <input id="form-control1" type="text" placeholder="Type in the first number">
+        </div>
+        <div>
+            <input  id="form-control2" type="text" placeholder="Type in the second number">
+        </div>
+        <input type="button" id="check" value="check now" onclick="print1()">
+    </form>
+    <div id="result1"></div>
+    <div id="result2"></div>
+
+</body>
+</html>
