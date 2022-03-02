@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CheckBoxes</title>
+    <style type="text/css">
+        .first{
+            display:flex;
+        }
+        input[type="checkbox"]{
+            width:30px;
+            min-height: 20px;
+            margin-bottom:20px;
+        }
+        body{
+            font-size:20px;
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+           
+            $("#checkboxall").click(function(){
+                $("input[type='checkbox']").prop('checked',this.checked)
+                if($("#checkboxall").prop("checked")==true){
+                    $("#text").html("Uncheck all")
+                } else{
+                    $("#text").html("Check all")
+                }
+            })
+          
+        })
+    </script>
+</head>
+<body>
+    <div class="first">
+        <input type="checkbox" value="checkall" id="checkboxall">
+        <div id="text">Check all</div>
+    </div>
+    <div>
+        <input type="checkbox" value="check1" id="checkbox"> first
+    </div>
+    <div>
+        <input type="checkbox" value="check2" id="checkbox"> second
+    </div>
+    <div>
+        <input type="checkbox" value="check3" id="checkbox"> third
+    </div> 
+    <div>
+        <input type="checkbox" value="check4" id="checkbox"> forth
+    </div>
+     
+     
+     
+</body>
+</html>

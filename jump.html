@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jump</title>
+</head>
+<style type="text/css">
+
+    #result1,#result2{
+        width:300px;
+        border: 1px solid black;
+        height: 200px;
+        margin: 10px 20px;
+    }
+    #btn1{
+        width:100px;
+        height:70px;
+    }
+
+</style>
+<script>
+    
+    window.onload = function(){
+        document.getElementById("btn1").onclick = jump
+        toRight = true
+        function jump() { 
+            if (toRight == true){
+                toRight = false
+                document.getElementById("btn1").value="<JUMP"
+
+                x = document.getElementById("result1").value
+                //y = document.getElementById("result2").value
+                document.getElementById("result1").value = ""
+                document.getElementById("result2").value = x
+            }
+
+            else {
+                toRight = true
+                document.getElementById("btn1").value="JUMP>"
+
+                y = document.getElementById("result2").value
+                //y = document.getElementById("result2").value
+                document.getElementById("result1").value = y
+                document.getElementById("result2").value = ""
+            }
+        }
+    }
+</script>
+<body>
+
+    <input type="text" id="result1">
+    <input type="button" value="JUMP>" id="btn1">
+    <input type="text" id="result2">
+
+    
+
+</body>
+</html>

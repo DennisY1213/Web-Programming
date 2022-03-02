@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Joe Online Order</title>
+    <style type="text/css">
+        body{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+        }
+        option{
+            width:30px;
+        }
+
+        form div{
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            justify-content:space-between;
+        }
+
+        form p{
+            font-size:20px;
+            margin-left:200px;
+        }
+
+        form select{
+            margin-right: 100px;
+            font-size:20px;
+        }
+
+        #order{
+            margin-top:40px;
+            margin-left:47%;
+            margin-right:auto;
+            width:100px;
+            height: 40px;
+        }
+
+        #result{
+            width:500px;
+            height:300px;
+            text-align: center;
+            padding-left: 200px;
+            margin-top: 40px;
+            font-size:20px;
+        }
+
+    </style>
+
+    <script>
+        window.onload = function(){
+            
+            document.getElementById("order").onclick = function(){
+
+                discount = 0
+                numHotdogs = document.getElementById("numhotdogs").value
+                numFries   = document.getElementById("numfries").value
+                numDrinks = document.getElementById("numdrinks").value
+                subtotal = parseFloat((3.75 * numHotdogs + 2.00 * numFries + 1.80 * numDrinks).toFixed(2))
+        
+                if(numHotdogs == 0 && numFries == 0 && numDrinks == 0){
+                    alert("You haven't ordered anything.")
+                }
+                
+                if(subtotal >= 20.0){
+                    discount = parseFloat((subtotal * 0.1).toFixed(2))
+                    subtotal = parseFloat((subtotal - discount).toFixed(2))
+                }
+
+                tax   = parseFloat((0.0625 * subtotal).toFixed(2))
+                total = parseFloat((subtotal + tax).toFixed(2))
+
+                document.getElementById("result").innerHTML = "You ordered: <br><br>" + numHotdogs + " hotdogs<br>"
+                + numFries + " French Fries<br>" + numDrinks + " Drinks<br><br>" + "Discount: $"+ discount + "<br> Subtotal: $"
+                + subtotal + "<br>Tax: $" + tax + "<br>Total: $" + total
+
+
+                
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <center><h1>Welome to Joes' Hotdogs!</h1></center>
+    <form>
+        <center><h1>Online order</h1></center>
+        <div class="hotdog">
+            <p>Hotdogs ($3.75):</p>
+            <select name="quantity" id="numhotdogs">
+                <option value=0></option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=10>10</option>
+                <option value=15>15</option>
+                <option value=20>20</option>
+            </select>
+        </div>
+        <div class="fries">
+            <p>French Fries ($2.00):</p>
+            <select name="quantity" id="numfries">
+                <option value=0></option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=10>10</option>
+                <option value=15>15</option>
+                <option value=20>20</option>
+            </select>
+        </div>
+        <div class="hotdog">
+            <p>Drinks ($1.80):</p>
+            <select name="quantity" id="numdrinks">
+                <option value=0></option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=10>10</option>
+                <option value=15>15</option>
+                <option value=20>20</option>
+            </select>
+        </div>
+        <input type="button" value="Order" id = "order">
+        <center><div id="result"></div></center>
+    </form>
+    
+
+</body>
+</html>
