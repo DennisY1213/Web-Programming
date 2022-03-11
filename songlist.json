@@ -1,0 +1,63 @@
+{
+    "playlist":[
+        {"title": "Come Around Me",
+         "artist": "Justin Bieber",
+         "genre": ["R&B", "Pop"],
+         "year": "2020"
+        },
+        
+        {"title": "Running Over",
+         "artist": "Justin Bieber",
+         "genre": ["R&B", "Pop"],
+         "year": "2020"
+        },
+
+        {"title": "ETA",
+         "artist": "Justin Bieber",
+         "genre": ["R&B", "Pop"],
+         "year": "2020"
+        },
+
+        {"title": "Yummy",
+         "artist": "Justin Bieber",
+         "genre": ["R&B", "Pop"],
+         "year": "2020"
+        },
+
+        {"title": "Lost in Japan",
+         "artist": "Shawn Mendas",
+         "genre": ["Pop"],
+         "year": "2018"
+        },
+
+        {"title": "Cheating on You",
+         "artist": "Charlie Puth",
+         "genre": ["Pop"],
+         "year": "2019"
+        },
+        
+        {"title": "Paris In The Rain",
+         "artist": "Lauv",
+         "genre": ["R&B", "Pop"],
+         "year": "2017"
+        },
+
+        {"title": "Godzilla (Explicit)",
+         "artist": "Eminem/Juice WRLD",
+         "genre": ["Rap"],
+         "year": "2020"
+        },
+
+        {"title": "Circles",
+         "artist": "Post Malone",
+         "genre": ["Rap", "Pop"],
+         "year": "2019"
+        },
+        
+        {"title": "Stranger Things",
+         "artist": "Joyner Lucas/Chris Brown",
+         "genre": ["Rap"],
+         "year": "2018"
+        }
+    ]
+}

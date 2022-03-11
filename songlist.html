@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Song list</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<style>
+    div {
+        width: 100%;
+    }
+
+    hr{
+        width: 600px;
+        margin-top:10px;
+    }
+
+    select{
+        margin-bottom: 20px;
+        width: 100px;
+        height: 30px;
+        margin-left:50px;
+    }
+
+    #result2{
+        font-size:20px;
+    }
+
+    input[type="button"]{
+        width: 50px;
+        height:30px;
+        margin-left: 20px;
+    }
+</style>
+<body>
+     <center><h1>My Playlist</h1></center>
+     <h2>Part 1: Serialize</h2>
+     <div id = "result1"></div>
+     <h2>Part 2: Genre Selector and Friendly Display</h2>
+     <p><select id = "selectGenre" name="Genre">
+         
+         <option value = "">Genre: All</option>
+         <option value = "R&B">Genre: R&B</option>
+         <option value = "Pop">Genre: Pop</option>
+         <option value = "Rap">Genre: Rap</option>
+     </select>
+     <input type = "button" value="Filter">
+     </p>
+     <center><div id = "result2"></div></center>
+     <script>
+        $.getJSON("songlist.json", function(data){
+            $("#result1").html(JSON.stringify(data.playlist) + "<br><br>")
+            showAll()
+
+            //Genre selector
+            type = ""
+            $("#selectGenre").change(function() {
+                output2 = ""
+                type = this.value;
+            })
+
+            $("input[type=button]").click(function(){
+                if(type == ""){
+                    showAll()
+                    return
+                }
+    
+                for(let i=0; i < data.playlist.length; i++){          
+                    if (hasGenre(data.playlist[i].genre, type)){
+                        output2 += data.playlist[i].title + "<br> Artist: " + data.playlist[i].artist +
+                        "<br> Genre: " + data.playlist[i].genre + "<br> Released: " + data.playlist[i].year
+                        + "<br><br><hr><br>"
+                    }
+                }
+                $("#result2").html(output2)
+            })       
+
+            function showAll(){
+                output1 = ""
+                for(let i=0; i < data.playlist.length; i++){
+                    output1 += data.playlist[i].title + "<br> Artist: " + data.playlist[i].artist +
+                    "<br> Genre: " + data.playlist[i].genre + "<br> Released: " + data.playlist[i].year
+                    + "<br><br><hr><br>"
+                }
+                $("#result2").html(output1)
+            }
+
+            function hasGenre(x,type){
+                for(let i=0; i < x.length; i++){
+                    if(x[i] == type){
+                        return true
+                    }
+                }
+                return false
+            }
+
+        })
+        
+     </script>
+</body>
+</html>
