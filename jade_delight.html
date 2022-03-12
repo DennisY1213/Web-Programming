@@ -241,7 +241,6 @@ function makeSelect(name, minRange, maxRange)
 
 function td(content, className="")
 {
-	//console.log("<td class = '" + className + "'>" + content + "</td>")
 	return "<td class = '" + className + "'>" + content + "</td>";
 }
 	
@@ -280,7 +279,6 @@ function td(content, className="")
 	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
 	  s += td("$<input type='text' name='cost'/>", "totalCost");
 	  s+= "</tr>";
-	  console.log(s)
   }
   document.writeln(s);
 </script>
