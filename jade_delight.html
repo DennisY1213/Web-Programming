@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		//initialize
+		subtotals = [0,0,0,0,0]
+		taxRate = 0.0625	
+		delivery = false
+		noorder = true	
+		names = ["Chicken Chop Suey	($4.50)", "Sweet and Sour Pork ($6.25)", "Shrimp Lo Mein ($6.25)", "Moo Shi Chicken	($7.50)", "Fried Rice	($2.85)"]
+		cost = [4.5, 6.25, 6.25, 7.5, 2.85]
+		$(".address").hide()
+        
+
+		//user Info part
+		$("input[value=pickup]").change(function(){
+			if($("input[value=pickup]").is(':checked')){
+				$(".address").hide()
+				delivery = false
+			} else {
+				$(".address").show()
+				delivery = true
+			}
+		})
+
+		$("input[value=delivery]").change(function(){
+			if($("input[value=delivery]").is(':checked')){
+			    $(".address").show()
+				delivery = true
+			} else {
+				$(".address").hide()
+				delivery = false
+			}
+		})
+
+
+		//quantity selection part
+		//if some quantity is elected
+		$('select').change(function(){
+			noorder = false
+			index = this.name[4]
+			
+			subtotalCost = eachcost(parseInt(this.selectedIndex), menuItems[this.name[4]].cost)
+			subtotals[index] = subtotalCost
+			$('input[name=cost]').eq(index).val(subtotalCost)
+			$("#subtotal").val(calsubtotal)	
+			$("#tax").val(caltax)	
+			$("#total").val(caltotal())	
+		})
+
+		//submit
+		$("input[type=button]").click(validateForm)
+      
+		//calculate subtotal for each item
+		function eachcost(quan, price){
+			return quan * price 
+		}
+
+		//calculate subtotal
+		function calsubtotal(){
+			result = 0
+			for(let i = 0; i < subtotals.length; i++){
+				result += subtotals[i]
+			}
+			return result
+		}
+        
+		//calculate tax
+		function caltax(){
+			return (taxRate * calsubtotal()).toFixed(2)
+		}
+        
+		//calculate total cost
+		function caltotal(){
+			return (parseFloat(calsubtotal()) + parseFloat(caltax())).toFixed(2)
+		}
+
+		//form validation
+		function validateForm() {
+			let haserror = []
+			let error = false
+			let x = $("input[name=lname]").val()
+			let y = $("input[name=phone]").val()
+
+            //check lastname
+			haserror.push(checkerror(x, "Last Name"))
+			
+
+			//check address if necessary
+			if(delivery == true){
+				let s = $("input[name=street]").val()
+				let c = $("input[name=city]").val()
+
+				haserror.push(checkerror(s, "Street Address"))
+				haserror.push(checkerror(c, "City Name"))
+
+			}	
+
+            //check phone number
+			haserror.push(checkerror(y, "Phone Number"))
+
+			//check if something is ordered
+			if(noorder){
+				alert("Please order something")
+				haserror.push(true)
+				return
+			}
+            
+			//check if there're errors
+			for(let k=0; k <haserror.length;k++){
+				if (haserror[k] == true){
+					alert("im here")
+					error = true
+					break
+				}
+			}
+
+			//if there's no error, pop up the order details
+			if(!error){
+				var today = new Date();
+				var newWindow = window.open("","Test","width=600,height=600,scrollbars=1,resizable=1")
+				var result = "<h1>Your Order:</h1>"
+
+				for(i=0; i < names.length; i++){
+					result += "<div><p>"+ names[i] + "</p> <p>x" + parseFloat(subtotals[i]/cost[i]) + "</p><p> cost: $" + subtotals[i] + "</p></div>"
+				}
+				result += "<div>Subtotal: $" + calsubtotal() + "</div><div>Subtotal: $" + caltax() + "</div><div> Total: $" + caltotal() + "</div>"
+
+				//add pickup time and delivery time
+				if(delivery == false){
+					if(today.getMinutes() + 15 >= 60 && today.getMinutes() + 15 <= 69){
+						time = (today.getHours() + 1) + ":0" + ((today.getMinutes() + 15)%60)
+					} else if(today.getMinutes() + 15 >= 70){
+						time = (today.getHours() + 1) + ":" + (today.getMinutes() + 15)%60
+					} else{
+						time = today.getHours() + ":" + (today.getMinutes() + 15)
+					}
+					result += "<div>Estimate Pickup Time: " + time
+				} else{
+					if(today.getMinutes() + 30 >= 60 && today.getMinutes() + 30 <= 69){
+						time = (today.getHours() + 1) + ":0" + ((today.getMinutes() + 30)%60)
+					} else if(today.getMinutes() + 30 >= 70){
+						time = (today.getHours() + 1) + ":" + (today.getMinutes() + 30)%60
+					} else{
+						time = today.getHours() + ":" + (today.getMinutes() + 30)
+					}
+					result += "<div>Estimate Delivery Time: " + time
+				}
+			    newWindow.document.write('<head><link rel="stylesheet" type="text/css" href="printstyle.css"></head>')
+				newWindow.document.write(result)
+			}
+		}
+
+		function checkerror(value, labelName){
+			if(labelName == "Phone Number"){
+				if(value == ""){
+					alert("Please enter your " + labelName)
+					return true
+				} else if (value.length != 7 && value.length != 10){
+					alert("Please enter a valid Phone Number")
+					return true
+				    }		
+			}
+
+			if(value == ""){
+				alert("Please enter your " + labelName)
+				return true
+			}
+
+			return false
+		}		
+	})
+</script>
+<style>
+	form{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	p{
+		width: 20%;
+		position: relative;
+	}
+	p input[type = "text"]{
+		position: absolute;
+		right: 0;
+	}
+
+	input[value = "pickup"]{
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+
+	input[value = "delivery"]{
+		margin-right: 20px;
+		margin-left: 50px;
+	}
+
+	h1{
+		display: flex;
+		justify-content: center;
+		align-self: center;
+	}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- personal information part-->
+<script>
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 6.25),
+	new MenuItem("Moo Shi Chicken", 7.5),
+	new MenuItem("Fried Rice", 2.85)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	
+	return t;
+}
+
+function td(content, className="")
+{
+	//console.log("<td class = '" + className + "'>" + content + "</td>")
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+	
+</script>
+
+<h1>Jade Delight</h1>
+<form>
+
+<p class="userInfo"><label>First Name:</label> <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*</label>:  <input type="text"  name='lname' /></p>
+<p class="userInfo address"><label>Street*</label>: <input type="text" name='street' /></p>
+<p class="userInfo address"><label>City*</label>: <input type="text" name='city' /></p>
+<p class="userInfo"><label>Phone*</label>: <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+
+<!-- quantity part-->
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script>
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+	  console.log(s)
+  }
+  document.writeln(s);
+</script>
+</table>
+
+<!-- subtotal part-->
+<p class="subtotal totalSection"><label>Subtotal</label>: 
+   $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p clas="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" />
+
+</form>
+</body>
+</html>
